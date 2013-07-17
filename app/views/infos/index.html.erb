@@ -1,0 +1,39 @@
+<h1>Listing infos</h1>
+<br>
+<br>
+
+
+<%= form_tag infos_path, :method => 'get', :id => "infos_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <div id="infos"><%= render 'infos' %></div>
+<% end %>
+
+<br><br>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Company</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @infos.each do |info| %>
+  <tr>
+    <td><%= info.name %></td>
+    <td><%= info.age %></td>
+    <td><%= info.company %></td>
+    <td><%= link_to 'Show', info %></td>
+    <td><%= link_to 'Edit', edit_info_path(info) %></td>
+    <td><%= link_to 'Destroy', info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Info', new_info_path %>
